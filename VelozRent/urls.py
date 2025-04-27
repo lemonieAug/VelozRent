@@ -26,3 +26,4 @@ urlpatterns = [
     path('faq/', views.faq, name='faq'),              # FAQ
     path('login/', views.login_usuario, name='login'), # Login
 ]
+#Parei em catewgoria

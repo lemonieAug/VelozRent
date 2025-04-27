@@ -1,68 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>VelozRent - Alugue seu carro</title>
+{% extends 'base.html' %}
+{% load static %}
 
-   <!-- CSS Bootstrap + Seu style.css -->
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/style.css">
-</head>
+{% block title %}Carros para Aluguel | VelozRent{% endblock %}
 
-<body class="main-layout">
+{% block content %}
 
-<!-- Header adaptado -->
-<!-- header -->
-<header>
-    <!-- header inner -->
-    <div class="header">
-       <div class="container">
-          <div class="row">
-             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                <div class="full">
-                   <div class="center-desk">
-                      <div class="logo">
-                         <a href="index.html"><img src="images/logo.png" alt="#" /></a>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                   </button>
-                   <div class="collapse navbar-collapse" id="navbarsExample04">
-                      <ul class="navbar-nav mr-auto">
-                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="carros.html">Carros</a> <!-- NOVO ITEM ADICIONADO -->
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact us</a>
-                         </li>
-                      </ul>
-                      <div class="sign_btn">
-                         <a href="login.html">Sign in</a>
-                      </div>
-                   </div>
-                </nav>
-             </div>
-          </div>
-       </div>
-    </div>
- </header>
- <!-- end header -->
-
- <!-- Barra de pesquisa sutil, clean e com inputs arredondados -->
- <section class="bestCar" style="background: #e6e6e6; padding: 20px 0;">
+<!-- Barra de pesquisa -->
+<section class="bestCar" style="background: #e6e6e6; padding: 20px 0;">
     <div class="container">
        <div class="row justify-content-center">
           <form class="form-inline d-flex flex-wrap justify-content-center w-100">
@@ -70,16 +14,12 @@
              <input class="search-input form-control mb-2 mr-sm-2" type="date" name="inicio">
              <input class="search-input form-control mb-2 mr-sm-2" type="date" name="fim">
              <button class="search-button btn mb-2">Buscar Carro</button>
-             <a href="reservas.html" style="margin-left: 10px;">Minhas Reservas</a>
+             <a href="" style="margin-left: 10px;">Minhas Reservas</a>
           </form>
        </div>
     </div>
- </section>
- 
- 
+</section>
 
- 
- 
 <!-- Landing com filtros e carros -->
 <section class="py-5">
    <div class="container">
@@ -111,7 +51,7 @@
             <div class="row">
                <div class="col-md-4 mb-4">
                   <div class="card h-100">
-                     <img src="images/car_img1.png" class="card-img-top" alt="Hyundai">
+                     <img src="{% static 'images/car_img1.png' %}" class="card-img-top" alt="Hyundai">
                      <div class="card-body text-center">
                         <h5 class="card-title">Hyundai HB20</h5>
                         <p class="card-text">SUV - R$ 200/dia</p>
@@ -122,7 +62,7 @@
 
                <div class="col-md-4 mb-4">
                   <div class="card h-100">
-                     <img src="images/car_img2.png" class="card-img-top" alt="Audi">
+                     <img src="{% static 'images/car_img2.png' %}" class="card-img-top" alt="Audi">
                      <div class="card-body text-center">
                         <h5 class="card-title">Audi Q3</h5>
                         <p class="card-text">Luxo - R$ 350/dia</p>
@@ -133,7 +73,7 @@
 
                <div class="col-md-4 mb-4">
                   <div class="card h-100">
-                     <img src="images/car_img3.png" class="card-img-top" alt="BMW X5">
+                     <img src="{% static 'images/car_img3.png' %}" class="card-img-top" alt="BMW X5">
                      <div class="card-body text-center">
                         <h5 class="card-title">BMW X5</h5>
                         <p class="card-text">SUV - R$ 500/dia</p>
@@ -141,23 +81,11 @@
                      </div>
                   </div>
                </div>
-               <!-- Adicione mais carros aqui -->
+               <!-- Você pode adicionar mais carros aqui depois -->
             </div>
          </div>
       </div>
    </div>
 </section>
 
-<!-- Footer -->
-<footer>
-   <div class="footer text-center py-4 bg-dark text-white">
-      <p>© 2025 VelozRent. Todos os direitos reservados.</p>
-   </div>
-</footer>
-
-<!-- Scripts -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+{% endblock %}
