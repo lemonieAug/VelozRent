@@ -17,6 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from VelozRent import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),               # Home
+    path('carros/', views.carros_disponiveis, name='carros'),  # <-- AQUI
+    path('faq/', views.faq, name='faq'),              # FAQ
+    path('login/', views.login_usuario, name='login'), # Login
 ]
