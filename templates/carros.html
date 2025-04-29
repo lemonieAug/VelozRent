@@ -28,6 +28,8 @@
          <aside class="col-md-3 mb-4">
             <h4>Filtrar carros</h4>
             <form method="get" action="{% url 'carros' %}">
+               <input type="text" class="form-control mb-3" placeholder="Buscar modelo" name="modelo" value="{{ request.GET.modelo }}">
+               
                <select class="form-control mb-3" name="categoria">
                   <option value="">Categoria</option>
                   {% for categoria in categorias %}
@@ -37,7 +39,15 @@
                   {% endfor %}
                </select>
             
-               <!-- Você pode adicionar mais filtros depois -->
+               <div class="form-row mb-3">
+                  <div class="col">
+                     <input type="number" class="form-control" name="preco_min" placeholder="Preço mínimo" value="{{ request.GET.preco_min }}">
+                  </div>
+                  <div class="col">
+                     <input type="number" class="form-control" name="preco_max" placeholder="Preço máximo" value="{{ request.GET.preco_max }}">
+                  </div>
+               </div>
+            
                <button type="submit" class="btn btn-primary w-100">Buscar</button>
             </form>
          </aside>
