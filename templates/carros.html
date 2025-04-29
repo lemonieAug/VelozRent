@@ -27,20 +27,17 @@
          <!-- Sidebar de Filtros -->
          <aside class="col-md-3 mb-4">
             <h4>Filtrar carros</h4>
-            <form>
-               <input type="text" class="form-control mb-3" placeholder="Buscar modelo">
-               <select class="form-control mb-3">
-                  <option>Categoria</option>
+            <form method="get" action="{% url 'carros' %}">
+               <select class="form-control mb-3" name="categoria">
+                  <option value="">Categoria</option>
                   {% for categoria in categorias %}
-                  <option value="{{ categoria.slug }}">{{ categoria.nome }}</option>
+                     <option value="{{ categoria.slug }}" {% if request.GET.categoria == categoria.slug %}selected{% endif %}>
+                        {{ categoria.nome }}
+                     </option>
                   {% endfor %}
                </select>
-               <select class="form-control mb-3">
-                  <option>Preço</option>
-                  <option>Até R$100</option>
-                  <option>R$100 - R$300</option>
-                  <option>R$300+</option>
-               </select>
+            
+               <!-- Você pode adicionar mais filtros depois -->
                <button type="submit" class="btn btn-primary w-100">Buscar</button>
             </form>
          </aside>
@@ -59,7 +56,7 @@
                      {% endif %}
                      <div class="card-body text-center">
                         <h5 class="card-title">{{ carro.nome }}</h5>
-                        <p class="card-text">{{ carro.categoria.nome }} - R$ {{ carro.preco }}/dia</p>
+                        <p class="card-text">{{ carro.categoria.nome }} - R$ {{ carro.preco_diario }}/dia</p>
                         <a href="{% url 'detalhe_carro' carro.slug %}" class="btn btn-success btn-sm">Alugar Agora</a> 
                      </div>
                   </div>

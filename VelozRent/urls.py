@@ -23,12 +23,12 @@ from . import views  # Importa views.py principal (para home, faq, login)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),               # Home
-    path('carros/', views.carros_disponiveis, name='carros'),  # Página geral de carros disponíveis
+    #path('carros/', views.carros_disponiveis, name='carros'),  # Página geral de carros disponíveis
     path('faq/', views.faq, name='faq'),              # FAQ
     path('login/', views.login_usuario, name='login'), # Login
 
     # Aqui o que muda:
-    path('', include('veiculos.urls')),  # Deixa o veiculos.urls cuidar dos carros_por_categoria
+    path('carros/', include('veiculos.urls')),  # Deixa o veiculos.urls cuidar dos carros_por_categoria
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #para rodar imagens com gambiarra
