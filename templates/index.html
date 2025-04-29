@@ -30,37 +30,25 @@
          <h2>Escolha seu estilo de carro</h2>
       </div>
       <div class="row text-center">
+
+         {% for categoria in categorias %}
          <div class="col-md-3">
             <div class="car_box">
-               <img src="{% static 'images/economico.jpg' %}" alt="Econômico" class="img-fluid rounded">
-               <h3>Econômico</h3>
-               <a href="#" class="read_more">Ver carros</a>
+               {% if categoria.categoria_imagem %}
+                  <img src="{{ categoria.categoria_imagem.url }}" alt="{{ categoria.nome }}" class="img-fluid rounded">
+               {% else %}
+                  <img src="{% static 'images/default_car.jpg' %}" alt="{{ categoria.nome }}" class="img-fluid rounded">
+               {% endif %}
+               <h3>{{ categoria.nome }}</h3>
+               <a href="{% url 'carros_por_categoria' categoria.slug %}" class="read_more">Ver carros</a>
             </div>
          </div>
-         <div class="col-md-3">
-            <div class="car_box">
-               <img src="{% static 'images/suv.jpg' %}" alt="SUV" class="img-fluid rounded">
-               <h3>SUV</h3>
-               <a href="#" class="read_more">Ver carros</a>
-            </div>
-         </div>
-         <div class="col-md-3">
-            <div class="car_box">
-               <img src="{% static 'images/luxo.jpg' %}" alt="Luxo" class="img-fluid rounded">
-               <h3>Luxo</h3>
-               <a href="#" class="read_more">Ver carros</a>
-            </div>
-         </div>
-         <div class="col-md-3">
-            <div class="car_box">
-               <img src="{% static 'images/esportivo.jpg' %}" alt="Esportivo" class="img-fluid rounded">
-               <h3>Esportivo</h3>
-               <a href="#" class="read_more">Ver carros</a>
-            </div>
-         </div>
+         {% endfor %}
+
       </div>
    </div>
 </section>
+
 
 <!-- Por que nos escolher -->
 <div class="choose">

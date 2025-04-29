@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from categoria import views
 from VelozRent import views
 
 urlpatterns = [
@@ -25,5 +25,7 @@ urlpatterns = [
     path('carros/', views.carros_disponiveis, name='carros'),  # <-- AQUI
     path('faq/', views.faq, name='faq'),              # FAQ
     path('login/', views.login_usuario, name='login'), # Login
+    path('carros/<slug:slug>/', views.carros_por_categoria, name='carros_por_categoria'),
+
 ]
-#Parei em catewgoria
+#Parei em 38
