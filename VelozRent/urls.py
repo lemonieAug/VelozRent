@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static #para rodar imagens
+from VelozRent import settings #para rodar imagens
 from . import views  # Importa views.py principal (para home, faq, login)
 
 urlpatterns = [
@@ -28,5 +30,7 @@ urlpatterns = [
     # Aqui o que muda:
     path('', include('veiculos.urls')),  # Deixa o veiculos.urls cuidar dos carros_por_categoria
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #para rodar imagens com gambiarra
 
 #Parei em 38

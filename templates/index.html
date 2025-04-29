@@ -35,7 +35,7 @@
          <div class="col-md-3">
             <div class="car_box">
                {% if categoria.categoria_imagem %}
-                  <img src="{{ categoria.categoria_imagem.url }}" alt="{{ categoria.nome }}" class="img-fluid rounded">
+                  <img src="{{ categoria.categoria_imagem.url }}" alt="{{ categoria.nome }}" class="img-fluid rounded" style="width: 200px; height: 150px; object-fit: contain;">
                {% else %}
                   <img src="{% static 'images/default_car.jpg' %}" alt="{{ categoria.nome }}" class="img-fluid rounded">
                {% endif %}
