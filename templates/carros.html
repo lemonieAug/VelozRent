@@ -31,10 +31,9 @@
                <input type="text" class="form-control mb-3" placeholder="Buscar modelo">
                <select class="form-control mb-3">
                   <option>Categoria</option>
-                  <option>Econômico</option>
-                  <option>SUV</option>
-                  <option>Luxo</option>
-                  <option>Elétrico</option>
+                  {% for categoria in categorias %}
+                  <option value="{{ categoria.slug }}">{{ categoria.nome }}</option>
+                  {% endfor %}
                </select>
                <select class="form-control mb-3">
                   <option>Preço</option>
@@ -49,39 +48,26 @@
          <!-- Lista de Carros -->
          <div class="col-md-9">
             <div class="row">
-               <div class="col-md-4 mb-4">
-                  <div class="card h-100">
-                     <img src="{% static 'images/car_img1.png' %}" class="card-img-top" alt="Hyundai">
-                     <div class="card-body text-center">
-                        <h5 class="card-title">Hyundai HB20</h5>
-                        <p class="card-text">SUV - R$ 200/dia</p>
-                        <a href="#" class="btn btn-success btn-sm">Alugar Agora</a>
-                     </div>
-                  </div>
-               </div>
 
+               {% for carro in carros %}
                <div class="col-md-4 mb-4">
                   <div class="card h-100">
-                     <img src="{% static 'images/car_img2.png' %}" class="card-img-top" alt="Audi">
+                     {% if carro.imagem %}
+                        <img src="{{ carro.imagem.url }}" class="card-img-top" alt="{{ carro.nome }}" style="max-height: 200px; object-fit: contain;">
+                     {% else %}
+                        <img src="{% static 'images/default_car.jpg' %}" class="card-img-top" alt="{{ carro.nome }}" style="max-height: 200px; object-fit: contain;">
+                     {% endif %}
                      <div class="card-body text-center">
-                        <h5 class="card-title">Audi Q3</h5>
-                        <p class="card-text">Luxo - R$ 350/dia</p>
-                        <a href="#" class="btn btn-success btn-sm">Alugar Agora</a>
+                        <h5 class="card-title">{{ carro.nome }}</h5>
+                        <p class="card-text">{{ carro.categoria.nome }} - R$ {{ carro.preco }}/dia</p>
+                        <a href="{% url 'detalhe_carro' carro.slug %}" class="btn btn-success btn-sm">Alugar Agora</a> 
                      </div>
                   </div>
                </div>
+               {% empty %}
+               <p>Nenhum carro disponível no momento.</p>
+               {% endfor %}
 
-               <div class="col-md-4 mb-4">
-                  <div class="card h-100">
-                     <img src="{% static 'images/car_img3.png' %}" class="card-img-top" alt="BMW X5">
-                     <div class="card-body text-center">
-                        <h5 class="card-title">BMW X5</h5>
-                        <p class="card-text">SUV - R$ 500/dia</p>
-                        <a href="#" class="btn btn-success btn-sm">Alugar Agora</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Você pode adicionar mais carros aqui depois -->
             </div>
          </div>
       </div>

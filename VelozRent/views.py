@@ -2,6 +2,7 @@
 from django.shortcuts import render
 
 from categoria.models import Categoria
+from veiculos.models import Carro
 
 def home(request):
     #return HttpResponse('index.html')
@@ -10,7 +11,9 @@ def home(request):
     return render(request, 'index.html', {'categorias': categorias})
 
 def carros_disponiveis(request):
-    return render(request, 'carros.html')
+    categorias = Categoria.objects.all()
+    carros = Carro.objects.all()
+    return render(request, 'carros.html', {'categorias': categorias , 'carros': carros})
 
 def faq(request):
     return render(request, 'faq.html')

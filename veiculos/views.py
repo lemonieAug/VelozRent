@@ -9,3 +9,14 @@ def carros_por_categoria(request, slug):
         'categoria': categoria,
         'categorias': Categoria.objects.all()
     })
+
+from veiculos.models import Carro
+
+def carros_disponiveis(request):
+    carros = Carro.objects.all()
+    categorias = Categoria.objects.all()
+    return render(request, 'veiculos/carros.html', {'carros': carros, 'categorias': categorias})
+
+def detalhe_carro(request, slug):
+    carro = get_object_or_404(Carro, slug=slug)
+    return render(request, 'carro-detalhe.html', {'carro': carro})
