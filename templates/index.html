@@ -15,7 +15,7 @@
                <strong>Site de Aluguel de Carros Responsivo</strong>
                <span>Rápido e Fácil</span>
                <p>Encontre o carro ideal para suas viagens e compromissos com praticidade e rapidez. Alugue agora mesmo pela VelozRent!</p>
-               <a href="#">Saiba Mais</a>
+               <a href="#escolha-carro">Saiba Mais</a>
             </div>
          </div>
       </div>
@@ -24,7 +24,7 @@
 <!-- Fim do Banner -->
 
 <!-- Seção Estilos de Carro -->
-<section class="bestCar" style="background: #fff; padding: 50px 0;">
+<section id="escolha-carro" class="bestCar" style="background: #fff; padding: 50px 0;">
    <div class="container">
       <div class="titlepage">
          <h2>Escolha seu estilo de carro</h2>
@@ -40,7 +40,7 @@
                   <img src="{% static 'images/default_car.jpg' %}" alt="{{ categoria.nome }}" class="img-fluid rounded">
                {% endif %}
                <h3>{{ categoria.nome }}</h3>
-               <a href="{% url 'carros_por_categoria' categoria.slug %}" class="read_more">Ver carros</a>
+               <a href="{% url 'carros' %}?categoria={{ categoria.slug }}" class="read_more">Ver carros</a>
             </div>
          </div>
          {% endfor %}
