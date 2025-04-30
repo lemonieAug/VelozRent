@@ -29,6 +29,8 @@ urlpatterns = [
 
     # Aqui o que muda:
     path('carros/', include('veiculos.urls')),  # Deixa o veiculos.urls cuidar dos carros_por_categoria
+
+    path('usuarios/', include('usuarios.urls')),  # Deixa o usuarios.urls cuidar do login, logout, etc.
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #para rodar imagens com gambiarra
