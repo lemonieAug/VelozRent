@@ -1,14 +1,17 @@
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        user = authenticate(request, username=email, password=senha)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
     else:
-        form = UserCreationForm()
-    return render(request, 'cadastro.html', {'form': form})
+        messages.error(request, 'Usuário ou senha inválidos.')
+    return render(request, 'login.html')
