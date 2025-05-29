@@ -1,141 +1,42 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Minhas Reservas - VelozRent</title>
+{% extends 'base.html' %}
+{% load static %}
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/style.css">
-</head>
+{% block title %}Minhas Reservas{% endblock %}
 
-<body class="main-layout">
-
-<!-- Header -->
-<header>
-   <div class="header">
-      <div class="container">
-         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-               <div class="full">
-                  <div class="center-desk">
-                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt="VelozRent Logo"/></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-               <nav class="navigation navbar navbar-expand-md navbar-dark">
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04">
-                     <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarsExample04">
-                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                           <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="carros.html">Carros</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="reservas.html">Minhas Reservas</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="contato.html">Contato</a>
-                        </li>
-                     </ul>
-                     <div class="sign_btn"><a href="login.html">Entrar</a></div>
-                  </div>
-               </nav>
-            </div>
-         </div>
-      </div>
-   </div>
-</header>
-<!-- End Header -->
-
-<!-- Minhas Reservas -->
+{% block content %}
 <section class="car" style="margin-top: 60px;">
    <div class="container">
       <div class="titlepage">
          <h2>Minhas Reservas</h2>
-         <span>Acompanhe todos os carros que você alugou!</span>
+         <span>Acompanhe os carros que você está reservando!</span>
       </div>
 
       <div class="row">
-
-         <!-- Card Reserva -->
+         {% for item in carros %}
          <div class="col-md-4">
             <div class="car_box" style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 20px; padding: 20px; margin-bottom: 30px; background: #ffffff;">
-               <figure><img src="images/carro_exemplo.jpg" alt="Carro reservado" class="img-fluid" style="border-radius: 15px;"></figure>
-               <h3 style="margin-top: 20px;">BMW X5</h3>
-               <p><strong>Retirada:</strong> 01/05/2025</p>
-               <p><strong>Devolução:</strong> 05/05/2025</p>
-               <p><strong>Status:</strong> Ativo</p>
-               <a href="#" class="find_btn" style="margin-top: 10px;">Cancelar Reserva</a>
+               <figure>
+                  <img src="{{ item.carro.imagem.url }}" alt="{{ item.carro.nome }}" class="img-fluid" style="border-radius: 15px;">
+               </figure>
+               <h3 style="margin-top: 20px;">{{ item.carro.nome }}</h3>
+               <p><strong>Retirada:</strong> {{ item.data_inicio|date:"d/m/Y" }}</p>
+               <p><strong>Devolução:</strong> {{ item.data_fim|date:"d/m/Y" }}</p>
+               <p><strong>Dias:</strong> {{ item.dias }}</p>
+               <p><strong>Total:</strong> R$ {{ item.total }}</p>
+               <a href="{% url 'remover_do_carrinho' item.carro.id %}" class="find_btn" style="margin-top: 10px;">Remover</a>
             </div>
          </div>
-
-         <!-- Card Reserva -->
-         <div class="col-md-4">
-            <div class="car_box" style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 20px; padding: 20px; margin-bottom: 30px; background: #ffffff;">
-               <figure><img src="images/carro_exemplo2.jpg" alt="Carro reservado" class="img-fluid" style="border-radius: 15px;"></figure>
-               <h3 style="margin-top: 20px;">Audi A3</h3>
-               <p><strong>Retirada:</strong> 10/04/2025</p>
-               <p><strong>Devolução:</strong> 12/04/2025</p>
-               <p><strong>Status:</strong> Finalizado</p>
-            </div>
-         </div>
-
-         <!-- Card Reserva -->
-         <div class="col-md-4">
-            <div class="car_box" style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 20px; padding: 20px; margin-bottom: 30px; background: #ffffff;">
-               <figure><img src="images/carro_exemplo3.jpg" alt="Carro reservado" class="img-fluid" style="border-radius: 15px;"></figure>
-               <h3 style="margin-top: 20px;">Hyundai HB20</h3>
-               <p><strong>Retirada:</strong> 20/04/2025</p>
-               <p><strong>Devolução:</strong> 22/04/2025</p>
-               <p><strong>Status:</strong> Cancelado</p>
-            </div>
-         </div>
-
+         {% empty %}
+         <p class="text-center">Nenhum carro adicionado ao carrinho ainda.</p>
+         {% endfor %}
       </div>
+
+      {% if carros %}
+      <div class="text-center mt-4">
+         <h4>Total Geral: R$ {{ total_geral }}</h4>
+         <a href="{% url 'confirmar_reserva' %}" class="btn btn-primary mt-3">Confirmar Reserva</a>
+      </div>
+      {% endif %}
    </div>
 </section>
-<!-- End Minhas Reservas -->
-
-<!-- Footer -->
-<footer>
-   <div class="footer">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="cont_call">
-                  <h3><strong class="multi color_chang">Call Now</strong><br>(+1) 12345667890</h3>
-               </div>
-               <div class="cont">
-                  <h3><strong class="multi">VelozRent</strong> Seu aluguel rápido e seguro!</h3>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="copyright">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <p>© 2025 VelozRent. Todos os direitos reservados.</p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</footer>
-<!-- End Footer -->
-
-<!-- Scripts -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+{% endblock %}

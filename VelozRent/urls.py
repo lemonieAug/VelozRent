@@ -31,6 +31,8 @@ urlpatterns = [
     path('carros/', include('veiculos.urls')),  # Deixa o veiculos.urls cuidar dos carros_por_categoria
 
     path('usuarios/', include('usuarios.urls')),  # Deixa o usuarios.urls cuidar do login, logout, etc.
+
+    path('reservas/', include('reservas.urls')),  # Deixa o reservas.urls cuidar do carrinho, adicionar, remover, etc.
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #para rodar imagens com gambiarra

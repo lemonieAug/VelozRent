@@ -1,127 +1,37 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Reservar Carro - VelozRent</title>
+{% extends 'base.html' %}
+{% block title %}Reservar Carro{% endblock %}
+{% load static %}
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body class="main-layout">
-
-<!-- Header -->
-<header>
-   <div class="header">
-      <div class="container">
-         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-               <div class="full">
-                  <div class="center-desk">
-                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt="VelozRent Logo"/></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-               <nav class="navigation navbar navbar-expand-md navbar-dark">
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04">
-                     <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarsExample04">
-                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                           <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="carros.html">Carros</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="reservas.html">Minhas Reservas</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="contato.html">Contato</a>
-                        </li>
-                     </ul>
-                     <div class="sign_btn"><a href="login.html">Entrar</a></div>
-                  </div>
-               </nav>
-            </div>
-         </div>
-      </div>
-   </div>
-</header>
-<!-- End Header -->
-
-<!-- Formulário de Reserva -->
+{% block content %}
 <section class="car" style="margin-top: 60px;">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="main_form" style="padding: 40px; background: #ffffff; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="main_form" style="padding: 40px; background: #ffffff; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          
+          <h2 style="text-align: center; margin-bottom: 30px;">Confirme sua Reserva</h2>
+
+          <form method="POST">
+            {% csrf_token %}
             
-            <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">Confirme sua Reserva</h2>
-  
-            <form action="#" method="POST">
-  
-              <div class="form-group">
-                <input type="text" name="carro" class="contactus" value="BMW X5" readonly style="margin-bottom: 20px;">
-              </div>
-  
-              <div class="form-group">
-                <input type="date" name="data_retirada" class="contactus" required style="margin-bottom: 20px;">
-              </div>
-  
-              <div class="form-group">
-                <input type="date" name="data_devolucao" class="contactus" required style="margin-bottom: 20px;">
-              </div>
-  
-              <button type="submit" class="find_btn login-button" style="margin-top: 10px;">Confirmar Reserva</button>
-  
-            </form>
-  
-          </div>
+            <div class="form-group">
+              <input type="text" name="carro" class="contactus" value="{{ carro.nome }}" readonly style="margin-bottom: 20px;">
+            </div>
+
+            <div class="form-group">
+              <input type="date" name="data_inicio" class="contactus" required value="{{ data_inicio|default:'' }}" style="margin-bottom: 20px;">
+            </div>
+
+            <div class="form-group">
+              <input type="date" name="data_fim" class="contactus" required value="{{ data_fim|default:'' }}" style="margin-bottom: 20px;">
+            </div>
+
+            <button type="submit" class="find_btn login-button" style="margin-top: 10px;">Confirmar Reserva</button>
+          </form>
+
         </div>
       </div>
     </div>
-  </section>
-  
-<!-- End Formulário de Reserva -->
-
-<!-- Footer -->
-<footer>
-   <div class="footer">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="cont_call">
-                  <h3><strong class="multi color_chang">Call Now</strong><br>(+1) 12345667890</h3>
-               </div>
-               <div class="cont">
-                  <h3><strong class="multi">VelozRent</strong> Seu aluguel rápido e seguro!</h3>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="copyright">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <p>© 2025 VelozRent. Todos os direitos reservados.</p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</footer>
-<!-- End Footer -->
-
-<!-- Scripts -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+  </div>
+</section>
+{% endblock %}

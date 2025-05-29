@@ -1054,16 +1054,32 @@ button {
      height: 100vh;
      margin: 0;
  }
- 
- .login-container {
-     background-color: #ffffff;
-     padding: 50px 40px;
-     border-radius: 20px;
+
+ /* .login-container {
+     display: flex;
+     justify-content: center;
      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-     width: 100%;
-     max-width: 400px;
+     background-color: #ffffff;
      text-align: center;
+     align-items: center;
+     height: 100vh; /* altura total da tela */
+   /*} */
+   .login-container {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
  }
+
+ body.login-page {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+ }
+ 
+ 
+   
  
  .login-title {
      margin-bottom: 30px;
