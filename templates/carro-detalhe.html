@@ -10,9 +10,9 @@
    <div class="row align-items-center">
       <div class="col-md-6">
          {% if carro.imagem %}
-            <img src="{{ carro.imagem.url }}" alt="{{ carro.nome }}" class="img-fluid rounded" />
+         <img src="{{ carro.imagem.url }}" alt="{{ carro.nome }}" class="img-fluid rounded" />
          {% else %}
-            <img src="{% static 'images/default_car.jpg' %}" alt="{{ carro.nome }}" class="img-fluid rounded" />
+         <img src="{% static 'images/default_car.jpg' %}" alt="{{ carro.nome }}" class="img-fluid rounded" />
          {% endif %}
       </div>
       <div class="col-md-6">
@@ -20,7 +20,11 @@
          <h4 class="mb-3" style="color: #f6d601;">R$ {{ carro.preco_diario }} / dia</h4>
          <p><strong>Categoria:</strong> {{ carro.categoria.nome }}</p>
          <p><strong>Descrição:</strong> {{ carro.descricao }}</p>
-         <a href="#" class="find_btn" style="text-align: center; display: inline-block; max-width: 200px;">Alugar Agora</a>
+         <a href="{% url 'reservar_carro' carro.id %}" class="find_btn"
+            style="text-align: center; display: inline-block; max-width: 200px;">
+            Alugar Agora
+         </a>
+
       </div>
    </div>
 </div>

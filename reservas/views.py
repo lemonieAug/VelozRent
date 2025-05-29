@@ -79,4 +79,32 @@ def confirmar_reserva(request):
 
 def reservar_carro(request, carro_id):
     carro = get_object_or_404(Carro, id=carro_id)
-    return render(request, 'reservas/confirmar_reserva.html', {'carro': carro})
+
+    if request.method == 'POST':
+        data_inicio = request.POST.get('data_inicio')
+        data_fim = request.POST.get('data_fim')
+
+        if not data_inicio or not data_fim:
+            return redirect('reservar_carro', carro_id=carro_id)
+
+        try:
+            inicio = datetime.strptime(data_inicio, '%Y-%m-%d').date()
+            fim = datetime.strptime(data_fim, '%Y-%m-%d').date()
+
+            if inicio > fim:
+                return redirect('reservar_carro', carro_id=carro_id)  # ou exibir mensagem
+
+        except ValueError:
+            return redirect('reservar_carro', carro_id=carro_id)
+
+        carrinho = request.session.get('carrinho', {})
+        carrinho[str(carro_id)] = {
+            'data_inicio': data_inicio,
+            'data_fim': data_fim
+        }
+        request.session['carrinho'] = carrinho
+
+        return redirect('ver_carrinho')
+
+    return render(request, 'confirmar_reserva.html', {'carro': carro})
+

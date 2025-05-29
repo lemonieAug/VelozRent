@@ -7,5 +7,4 @@ urlpatterns = [
     path('remover/<int:carro_id>/', views.remover_do_carrinho, name='remover_do_carrinho'),
     path('confirmar/', views.confirmar_reserva, name='confirmar_reserva'),
     path('confirmar/<int:carro_id>/', views.reservar_carro, name='reservar_carro'),
-
 ]
