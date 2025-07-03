@@ -62,7 +62,7 @@ def confirmar_reserva(request):
     if not carrinho:
         return redirect('ver_carrinho')
 
-    reserva = Reserva.objects.create(usuario=request.user)
+    reserva = Reserva.objects.create(usuario=request.user, status='Confirmada')
 
     for carro_id, datas in carrinho.items():
         carro = get_object_or_404(Carro, id=int(carro_id))

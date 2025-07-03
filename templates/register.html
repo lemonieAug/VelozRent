@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cadastro - VelozRent{% endblock %}
+
+{% block content %}
+<style>
+  .login-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+  }
+
+  .login-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-links {
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="login-page-wrapper">
+  <div class="login-container">
+    <h2 class="login-title">Cadastro</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="nome" class="login-input" placeholder="Nome completo" required>
+      <input type="email" name="email" class="login-input" placeholder="Email" required>
+      <input type="password" name="senha" class="login-input" placeholder="Senha" required>
+      <input type="password" name="confirmar_senha" class="login-input" placeholder="Confirmar senha" required>
+      <button type="submit" class="find_btn login-button">Cadastrar</button>
+    </form>
+
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li style="color: red;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="login-links">
+      <p>Já tem uma conta? <a href="{% url 'login' %}">Entrar</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -14,16 +14,19 @@
       <div class="row">
          {% for item in carros %}
          <div class="col-md-4">
-            <div class="car_box" style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 20px; padding: 20px; margin-bottom: 30px; background: #ffffff;">
+            <div class="car_box"
+               style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 20px; padding: 20px; margin-bottom: 30px; background: #ffffff;">
                <figure>
-                  <img src="{{ item.carro.imagem.url }}" alt="{{ item.carro.nome }}" class="img-fluid" style="border-radius: 15px;">
+                  <img src="{{ item.carro.imagem.url }}" alt="{{ item.carro.nome }}" class="img-fluid"
+                     style="border-radius: 15px;">
                </figure>
                <h3 style="margin-top: 20px;">{{ item.carro.nome }}</h3>
                <p><strong>Retirada:</strong> {{ item.data_inicio|date:"d/m/Y" }}</p>
                <p><strong>Devolução:</strong> {{ item.data_fim|date:"d/m/Y" }}</p>
                <p><strong>Dias:</strong> {{ item.dias }}</p>
                <p><strong>Total:</strong> R$ {{ item.total }}</p>
-               <a href="{% url 'remover_do_carrinho' item.carro.id %}" class="find_btn" style="margin-top: 10px;">Remover</a>
+               <a href="{% url 'remover_do_carrinho' item.carro.id %}" class="find_btn"
+                  style="margin-top: 10px;">Remover</a>
             </div>
          </div>
          {% empty %}
@@ -34,7 +37,11 @@
       {% if carros %}
       <div class="text-center mt-4">
          <h4>Total Geral: R$ {{ total_geral }}</h4>
-         <a href="{% url 'confirmar_reserva' %}" class="btn btn-primary mt-3">Confirmar Reserva</a>
+         <a href="{% url 'confirmar_reserva' %}" class="btn btn-primary mt-3"
+            onclick="this.classList.add('disabled'); this.innerText='Processando...';">
+            Confirmar Reserva
+         </a>
+
       </div>
       {% endif %}
    </div>

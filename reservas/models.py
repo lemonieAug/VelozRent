@@ -4,14 +4,22 @@ from veiculos.models import Carro
 from datetime import timedelta
 
 class Reserva(models.Model):
+    STATUS_CHOICES = [
+        ('Pendente', 'Pendente'),
+        ('Confirmada', 'Confirmada'),
+        ('Cancelada', 'Cancelada'),
+    ]
+
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pendente')
 
     def __str__(self):
         return f"Reserva #{self.id} - {self.usuario.username}"
 
     def total_reserva(self):
         return sum(item.total_item() for item in self.itens.all())
+
 
 class ItemReserva(models.Model):
     reserva = models.ForeignKey(Reserva, related_name='itens', on_delete=models.CASCADE)

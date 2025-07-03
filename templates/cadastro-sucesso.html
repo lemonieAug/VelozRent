@@ -1,22 +1,53 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Cadastro Sucesso - VelozRent</title>
+{% extends 'base.html' %}
+{% load static %}
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/style.css">
-</head>
+{% block title %}Cadastro Sucesso - VelozRent{% endblock %}
 
-<body class="main-layout login-body">
+{% block content %}
+<style>
+  .login-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding-top: 100px; /* compensar o header fixo */
+  }
 
-<div class="login-container">
-   <h2 class="login-title">🎉 Sucesso!</h2>
-   <p class="mb-4">Seu cadastro foi realizado com sucesso.<br>Você já pode fazer login e aproveitar nossos serviços!</p>
-   <a href="login.html" class="find_btn login-button" style="text-align: center; display: inline-block; max-width: 200px;">Ir para Login</a>
+  .login-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .login-button {
+    background-color: #000;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    max-width: 200px;
+    margin-top: 1rem;
+  }
+</style>
+
+
+<div class="login-page-wrapper">
+  <div class="login-container">
+    <h2 class="login-title">🎉 Sucesso!</h2>
+    <p class="mb-3">
+      Seu cadastro foi realizado com sucesso.<br>
+      Você já pode fazer login e aproveitar nossos serviços!
+    </p>
+    <a href="{% url 'login' %}" class="login-button">Ir para Login</a>
+  </div>
 </div>
 
-</body>
-</html>
+{% endblock %}

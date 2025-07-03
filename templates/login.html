@@ -28,8 +28,8 @@
     <h2 class="login-title">Login</h2>
     <form method="POST">
       {% csrf_token %}
-      <input type="text" class="contactus login-input" placeholder="Email" name="email" required>
-      <input type="password" class="contactus login-input" placeholder="Senha" name="senha" required>
+      <input type="text" class="contactus login-input" placeholder="Email" name="username" required>
+      <input type="password" class="contactus login-input" placeholder="Senha" name="password" required>
       <button type="submit" class="find_btn login-button">Entrar</button>
     </form>
     <div class="login-links">
